@@ -86,7 +86,7 @@ public class Queue3<T> extends QueueSecondary<T> {
     public final void enqueue(T x) {
         assert x != null : "Violation of: x is not null";
 
-        // TODO - fill in body
+        this.entries.add(this.entries.length(), x);
 
     }
 
