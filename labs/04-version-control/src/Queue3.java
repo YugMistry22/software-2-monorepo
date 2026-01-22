@@ -94,10 +94,9 @@ public class Queue3<T> extends QueueSecondary<T> {
     public final T dequeue() {
         assert this.length() > 0 : "Violation of: this /= <>";
 
-        // TODO - fill in body
-
         // This line added just to make the component compilable.
-        return null;
+        return this.entries.remove(0);
+
     }
 
     @Override
