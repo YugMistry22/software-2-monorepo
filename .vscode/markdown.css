@@ -1,0 +1,18 @@
+/* for inline code */
+:not(pre):not(.hljs)>code {
+    color: black;
+    background-color: #afb8c133;
+    padding: .2em .4em;
+    margin: 0;
+    border-radius: 6px;
+    font-size: 85%;
+}
+
+/* Borrowed from https://www.geekster.in/articles/kbd-tag-in-html/ */
+kbd {
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
