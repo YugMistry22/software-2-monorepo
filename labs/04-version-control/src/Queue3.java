@@ -105,7 +105,7 @@ public class Queue3<T> extends QueueSecondary<T> {
         // TODO - fill in body
 
         // This line added just to make the component compilable.
-        return 0;
+        return this.entries.length();
     }
 
     @Override
