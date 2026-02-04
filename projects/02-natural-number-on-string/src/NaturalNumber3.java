@@ -153,13 +153,13 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
     @Override
     public final int divideBy10() {
 
-        String k = "";
+        String k = "0";
         if (!this.rep.equals("")) {
             int lastDigit = this.rep.length() - 1;
             k = this.rep.substring(lastDigit);
             this.rep = this.rep.substring(0, lastDigit);
-            return Integer.parseInt(k);
         }
+        return Integer.parseInt(k);
 
     }
 
