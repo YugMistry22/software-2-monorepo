@@ -59,7 +59,11 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
     public NaturalNumber3(int i) {
         assert i >= 0 : "Violation of: i >= 0";
 
-        // TODO - fill in body
+        if (i == 0) {
+            this.rep = "";
+        } else {
+            this.rep = Integer.toString(i);
+        }
 
     }
 
