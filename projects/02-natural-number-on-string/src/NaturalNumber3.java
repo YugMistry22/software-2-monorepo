@@ -160,10 +160,8 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
     @Override
     public final boolean isZero() {
 
-        // TODO - fill in body
+        return this.rep.equals("");
 
-        // This line added just to make the component compilable.
-        return false;
     }
 
 }
