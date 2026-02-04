@@ -96,7 +96,7 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
     public NaturalNumber3(NaturalNumber n) {
         assert n != null : "Violation of: n is not null";
 
-        // TODO - fill in body
+        this.copyFrom(n);
 
     }
 
