@@ -59,9 +59,8 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
     public NaturalNumber3(int i) {
         assert i >= 0 : "Violation of: i >= 0";
 
-        if (i == 0) {
-            this.createNewRep();
-        } else {
+        this.createNewRep();
+        if (i != 0) {
             this.rep = Integer.toString(i);
         }
 
@@ -96,7 +95,9 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
 
         this.createNewRep();
         String s = n.toString();
-        this.rep = s;
+        if (!s.equals("0")) {
+            this.rep = s;
+        }
 
     }
 
