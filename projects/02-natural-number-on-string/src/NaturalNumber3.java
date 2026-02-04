@@ -156,7 +156,7 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
         String k = "";
         if (!this.rep.equals("")) {
             int lastDigit = this.rep.length() - 1;
-            k = this.rep.charAt(lastDigit);
+            k = this.rep.substring(lastDigit);
             this.rep = this.rep.substring(0, lastDigit);
             return Integer.parseInt(k);
         }
