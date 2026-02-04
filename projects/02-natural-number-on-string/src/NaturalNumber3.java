@@ -46,7 +46,7 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
      */
     public NaturalNumber3() {
 
-        // TODO - fill in body
+        this.createNewRep();
 
     }
 
