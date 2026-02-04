@@ -78,7 +78,12 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
         assert s.matches("0|[1-9]\\d*") : ""
                 + "Violation of: there exists n: NATURAL (s = TO_STRING(n))";
 
-        // TODO - fill in body
+        if (s.equals("0")) {
+            this.rep = "";
+        } else {
+            this.rep = s;
+
+        }
 
     }
 
