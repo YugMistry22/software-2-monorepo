@@ -102,15 +102,10 @@ public class Queue3<T> extends QueueSecondary<T> {
     @Override
     public final int length() {
 
-        // This line added just to make the component compilable.
-        int x = this.entries.length();
-        int count = 0;
-        while (x > 0) {
-            x--;
-            count++;
-        }
+        // TODO - fill in body
 
-        return count;
+        // This line added just to make the component compilable.
+        return this.entries.length();
     }
 
     @Override
