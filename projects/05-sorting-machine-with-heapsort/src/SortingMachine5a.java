@@ -60,7 +60,7 @@ import components.sortingmachine.SortingMachineSecondary;
  *   this = (false, $this.machineOrder, multiset_entries($this.heap[0, $this.heapSize)))
  * </pre>
  *
- * @author Put your name here
+ * @author Aarush Kurupati, Yug Mistry
  *
  */
 public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
@@ -237,9 +237,15 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
          * representation for a complete binary tree.
          */
 
-        // TODO - fill in body
-        // *** you must use the recursive algorithm discussed in class ***
-
+        if (array.length - 1 > top * 2) {
+            int child = top * 2 + 1;
+            heapify(array, child + 1, order);
+            if (child < array.length - 1) {
+                heapify(array, child + 1, order);
+            }
+            siftDown(array, top, array.length - 1, order);
+            // *** you must use the recursive algorithm discussed in class ***
+        }
     }
 
     /**
@@ -490,8 +496,8 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
     public final void changeToExtractionMode() {
         assert this.isInInsertionMode() : "Violation of: this.insertion_mode";
 
-        this.heap = buildHeap(this.entries, this.machineOrder)
-        this.heapSize= this.heap.length;
+        this.heap = buildHeap(this.entries, this.machineOrder);
+        this.heapSize = this.heap.length;
         this.insertionMode = false;
 
         assert this.conventionHolds();
@@ -609,7 +615,4 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
             throw new UnsupportedOperationException(
                     "remove operation not supported");
         }
-
     }
-
-}
