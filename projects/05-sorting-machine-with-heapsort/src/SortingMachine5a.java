@@ -614,4 +614,3 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
             throw new UnsupportedOperationException(
                     "remove operation not supported");
         }
-    }
