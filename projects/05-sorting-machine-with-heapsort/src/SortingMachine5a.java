@@ -3,6 +3,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import components.queue.Queue;
+import components.queue.Queue1L;
 import components.sortingmachine.SortingMachine;
 import components.sortingmachine.SortingMachineSecondary;
 
@@ -403,24 +404,12 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
      * </pre>
      */
     private void createNewRep(Comparator<T> order) {
-<<<<<<< HEAD
 
-<<<<<<< Updated upstream
-=======
         this.machineOrder = order;
->>>>>>> 005dae6e6bb7a72230389ae6d40ee2ae5047990d
         this.insertionMode = true;
         this.machineOrder = order;
         this.entries = new Queue1L<T>();
         this.heapSize = 0;
-<<<<<<< HEAD
-=======
-        this.createNewRep(order);
-        assert this.conventionHolds();
->>>>>>> Stashed changes
-=======
-
->>>>>>> 005dae6e6bb7a72230389ae6d40ee2ae5047990d
     }
 
     /*
