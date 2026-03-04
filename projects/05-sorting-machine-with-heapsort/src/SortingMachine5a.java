@@ -3,6 +3,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import components.queue.Queue;
+import components.queue.Queue1L;
 import components.sortingmachine.SortingMachine;
 import components.sortingmachine.SortingMachineSecondary;
 
@@ -180,7 +181,18 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
          * representation for a complete binary tree.
          */
 
-        // TODO - fill in body
+        int leftChild = 2 * top + 1;
+        int rightChild = 2 * top + 2;
+        if (leftChild <= last) {
+            int smaller = leftChild;
+            if (rightChild <= last
+                    && order.compare(array[rightChild], array[leftChild]) < 0) {
+                smaller = rightChild;
+            }
+            if (order.compare(array[top], array[smaller]) > 0) {
+                exchangeEntries(array, top, smaller);
+            }
+        }
         // *** you must use the recursive algorithm discussed in class ***
 
     }
@@ -386,7 +398,11 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
      */
     private void createNewRep(Comparator<T> order) {
 
-        // TODO - fill in body
+        this.machineOrder = order;
+        this.insertionMode = true;
+        this.entries = new Queue1L<>();
+        this.heap = (T[]) (new Object[0]);
+        this.heapSize = 0;
 
     }
 
@@ -459,7 +475,7 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
         assert x != null : "Violation of: x is not null";
         assert this.isInInsertionMode() : "Violation of: this.insertion_mode";
 
-        // TODO - fill in body
+        this.entries.enqueue(x);
 
         assert this.conventionHolds();
     }
@@ -468,7 +484,9 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
     public final void changeToExtractionMode() {
         assert this.isInInsertionMode() : "Violation of: this.insertion_mode";
 
-        // TODO - fill in body
+        this.heap = buildHeap(this.entries, this.machineOrder);
+        this.heapSize = this.heap.length;
+        this.insertionMode = false;
 
         assert this.conventionHolds();
     }
