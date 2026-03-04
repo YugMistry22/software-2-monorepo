@@ -192,10 +192,6 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
                 exchangeEntries(array, top, smaller);
             }
         }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         // *** you must use the recursive algorithm discussed in class ***
 
     }
@@ -407,16 +403,24 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
      * </pre>
      */
     private void createNewRep(Comparator<T> order) {
+<<<<<<< HEAD
 
 <<<<<<< Updated upstream
+=======
+        this.machineOrder = order;
+>>>>>>> 005dae6e6bb7a72230389ae6d40ee2ae5047990d
         this.insertionMode = true;
         this.machineOrder = order;
         this.entries = new Queue1L<T>();
         this.heapSize = 0;
+<<<<<<< HEAD
 =======
         this.createNewRep(order);
         assert this.conventionHolds();
 >>>>>>> Stashed changes
+=======
+
+>>>>>>> 005dae6e6bb7a72230389ae6d40ee2ae5047990d
     }
 
     /*
