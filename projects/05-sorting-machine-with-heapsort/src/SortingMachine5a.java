@@ -405,17 +405,10 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
      */
     private void createNewRep(Comparator<T> order) {
 
-<<<<<<< HEAD
-        this.machineOrder = order;
         this.insertionMode = true;
-        this.entries = new Queue1L<>();
-        this.heap = (T[]) (new Object[0]);
+        this.machineOrder = order;
+        this.entries = new Queue1L<T>();
         this.heapSize = 0;
-
-=======
-        this.createNewRep(order);
-        assert this.conventionHolds();
->>>>>>> 02eb3c4ddbe1f3a656926fdff25a0ac3d365cfd9
     }
 
     /*
