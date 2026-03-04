@@ -3,7 +3,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import components.queue.Queue;
-import components.queue.Queue1L;
 import components.sortingmachine.SortingMachine;
 import components.sortingmachine.SortingMachineSecondary;
 
@@ -193,6 +192,10 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
                 exchangeEntries(array, top, smaller);
             }
         }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         // *** you must use the recursive algorithm discussed in class ***
 
     }
@@ -405,10 +408,15 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
      */
     private void createNewRep(Comparator<T> order) {
 
+<<<<<<< Updated upstream
         this.insertionMode = true;
         this.machineOrder = order;
         this.entries = new Queue1L<T>();
         this.heapSize = 0;
+=======
+        this.createNewRep(order);
+        assert this.conventionHolds();
+>>>>>>> Stashed changes
     }
 
     /*
@@ -489,13 +497,8 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
     public final void changeToExtractionMode() {
         assert this.isInInsertionMode() : "Violation of: this.insertion_mode";
 
-<<<<<<< HEAD
-        this.heap = buildHeap(this.entries, this.machineOrder);
-        this.heapSize = this.heap.length;
-=======
         this.heap = buildHeap(this.entries, this.machineOrder)
         this.heapSize= this.heap.length;
->>>>>>> 02eb3c4ddbe1f3a656926fdff25a0ac3d365cfd9
         this.insertionMode = false;
 
         assert this.conventionHolds();
