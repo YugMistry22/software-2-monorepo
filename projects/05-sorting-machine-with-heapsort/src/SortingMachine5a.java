@@ -181,7 +181,6 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
          * representation for a complete binary tree.
          */
 
-<<<<<<< HEAD
         int leftChild = 2 * top + 1;
         int rightChild = 2 * top + 2;
         if (leftChild <= last) {
@@ -194,24 +193,6 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
                 exchangeEntries(array, top, smaller);
             }
         }
-=======
-        int left = 2 * top + 1;
-        if (left > last) {
-            return;
-        }
-
-        int right = left + 1;
-
-        int smallerChild = left;
-        if (right <= last && order.compare(array[right], array[left]) < 0) {
-            smallerChild = right;
-        }
-        if (order.compare(array[top], array[smallerChild]) > 0) {
-            exchangeEntries(array, top, smallerChild);
-            siftDown(array, smallerChild, last, order); // recursion
-        }
-
->>>>>>> 02eb3c4ddbe1f3a656926fdff25a0ac3d365cfd9
         // *** you must use the recursive algorithm discussed in class ***
 
     }
