@@ -508,11 +508,18 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
                 .isInInsertionMode() : "Violation of: not this.insertion_mode";
         assert this.size() > 0 : "Violation of: this.contents /= {}";
 
-        // TODO - fill in body
+        T result = this.heap[0];
+
+        this.heapSize--;
+        exchangeEntries(this.heap, 0, this.heapSize);
+
+        if (this.heapSize > 0) {
+            siftDown(this.heap, 0, this.heapSize - 1, this.machineOrder);
+        }
 
         assert this.conventionHolds();
         // Fix this line to return the result after checking the convention.
-        return null;
+        return result;
     }
 
     @Override
