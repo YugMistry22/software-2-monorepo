@@ -3,6 +3,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import components.queue.Queue;
+import components.queue.Queue1L;
 import components.sortingmachine.SortingMachine;
 import components.sortingmachine.SortingMachineSecondary;
 
@@ -180,6 +181,20 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
          * representation for a complete binary tree.
          */
 
+<<<<<<< HEAD
+        int leftChild = 2 * top + 1;
+        int rightChild = 2 * top + 2;
+        if (leftChild <= last) {
+            int smaller = leftChild;
+            if (rightChild <= last
+                    && order.compare(array[rightChild], array[leftChild]) < 0) {
+                smaller = rightChild;
+            }
+            if (order.compare(array[top], array[smaller]) > 0) {
+                exchangeEntries(array, top, smaller);
+            }
+        }
+=======
         int left = 2 * top + 1;
         if (left > last) {
             return;
@@ -196,6 +211,7 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
             siftDown(array, smallerChild, last, order); // recursion
         }
 
+>>>>>>> 02eb3c4ddbe1f3a656926fdff25a0ac3d365cfd9
         // *** you must use the recursive algorithm discussed in class ***
 
     }
@@ -408,8 +424,17 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
      */
     private void createNewRep(Comparator<T> order) {
 
+<<<<<<< HEAD
+        this.machineOrder = order;
+        this.insertionMode = true;
+        this.entries = new Queue1L<>();
+        this.heap = (T[]) (new Object[0]);
+        this.heapSize = 0;
+
+=======
         this.createNewRep(order);
         assert this.conventionHolds();
+>>>>>>> 02eb3c4ddbe1f3a656926fdff25a0ac3d365cfd9
     }
 
     /*
@@ -490,8 +515,13 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
     public final void changeToExtractionMode() {
         assert this.isInInsertionMode() : "Violation of: this.insertion_mode";
 
+<<<<<<< HEAD
+        this.heap = buildHeap(this.entries, this.machineOrder);
+        this.heapSize = this.heap.length;
+=======
         this.heap = buildHeap(this.entries, this.machineOrder)
         this.heapSize= this.heap.length;
+>>>>>>> 02eb3c4ddbe1f3a656926fdff25a0ac3d365cfd9
         this.insertionMode = false;
 
         assert this.conventionHolds();
