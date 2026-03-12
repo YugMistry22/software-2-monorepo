@@ -176,7 +176,7 @@ public class List3<T> extends ListSecondary<T> {
      */
     private void createNewRep() {
 
-        // TODO - fill in body
+        this.createNewRep();
 
     }
 
