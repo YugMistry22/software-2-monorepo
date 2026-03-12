@@ -755,4 +755,138 @@ public abstract class ListTest {
 
     // TODO - add test cases for retreat
 
+    // Retreat with single element in left when right contains multiple elements
+    @Test
+    public final void testRetreatSingleLeftWithRight() {
+        List<String> list1 = this.createFromArgsTest(1, "A", "B", "C");
+        List<String> list2 = this.createFromArgsRef(0, "A", "B", "C");
+        list1.retreat();
+        assertEquals(list2, list1);
+    }
+
+    // Retreat when multiple elements in left and right is empty
+    @Test
+    public final void testRetreatMultipleLeftNoRight() {
+        final int three = 3;
+        List<String> list1 = this.createFromArgsTest(three, "A", "B", "C");
+        List<String> list2 = this.createFromArgsRef(2, "A", "B", "C");
+        list1.retreat();
+        assertEquals(list2, list1);
+    }
+
+    // Retreat when multiple elements in left and non-empty right
+    @Test
+    public final void testRetreatMultipleLeftWithRight() {
+        List<String> list1 = this.createFromArgsTest(2, "A", "B", "C", "D");
+        List<String> list2 = this.createFromArgsRef(1, "A", "B", "C", "D");
+        list1.retreat();
+        assertEquals(list2, list1);
+    }
+
+    // Repeated retreats until left becomes empty
+    @Test
+    public final void testRetreatRepeated() {
+        final int three = 3;
+        List<String> list1 = this.createFromArgsTest(three, "one", "two",
+                "three", "four", "five");
+        list1.retreat();
+        list1.retreat();
+        list1.retreat();
+        List<String> list2 = this.createFromArgsRef(0, "one", "two", "three",
+                "four", "five");
+        assertEquals(list2, list1);
+
+    }
+
+    // Retreat immediately after advance
+    @Test
+    public final void testRetreatAfterAdvance() {
+        List<String> list1 = this.createFromArgsTest(0, "A", "B", "C");
+        list1.advance(); // left = ["A"], right become ["B", "C"]
+        list1.retreat(); // should revert to left = [], right = ["A", "B", "C"]
+        List<String> list2 = this.createFromArgsRef(0, "A", "B", "C");
+        assertEquals(list2, list1);
+    }
+
+    // Retreat after moving all elements to left using moveToFinish
+    @Test
+    public final void testRetreatAfterMoveToFinish() {
+        List<String> list1 = this.createFromArgsTest(0, "X", "Y", "Z");
+        list1.moveToFinish(); // left = ["X", "Y", "Z"], right = []
+        list1.retreat(); // left = ["X", "Y"], right = ["Z"]
+        List<String> list2 = this.createFromArgsRef(2, "X", "Y", "Z");
+        assertEquals(list2, list1);
+    }
+
+    // Complex sequence of operations
+    @Test
+    public final void testRetreatComplexSequence() {
+        List<String> list1 = this.createFromArgsTest(2, "1", "2", "3", "4",
+                "5");
+        list1.advance(); // left = ["1", "2", "3"] right = ["4", "5"]
+        list1.retreat(); // left = ["1", "2"], right = ["3", "4", "5"]
+        list1.retreat(); // left = ["1"], right = ["2", "3", "4", "5"]
+        List<String> list2 = this.createFromArgsRef(1, "1", "2", "3", "4", "5");
+        assertEquals(list2, list1);
+    }
+
+    // Retreat when both left and right contain multiple elements
+    @Test
+    public final void testRetreatWhenLeftAndRightMultipleElements() {
+        final int three = 3;
+        final int four = 4;
+        List<String> list1 = this.createFromArgsTest(four, "a", "b", "c", "d",
+                "e", "f", "g");
+        List<String> list2 = this.createFromArgsRef(three, "a", "b", "c", "d",
+                "e", "f", "g");
+        list1.retreat();
+        assertEquals(list2, list1);
+    }
+
+    // Retreat after multiple advances
+    @Test
+    public final void testRetreatAfterMultipleAdvances() {
+        List<String> list1 = this.createFromArgsTest(0, "1", "2", "3", "4");
+        list1.advance(); // left = ["1"], right = ["2", "3", "4"]
+        list1.advance(); // left = ["1", "2"], right = ["3", "4"]
+        list1.retreat(); // left = ["1"], right = ["2", "3", "4"]
+        List<String> list2 = this.createFromArgsRef(1, "1", "2", "3", "4");
+        assertEquals(list2, list1);
+    }
+
+    // Retreat after multiple moveToFinish and retreats
+    @Test
+    public final void testRetreatAfterMultipleMovesToFinish() {
+        List<String> list1 = this.createFromArgsTest(0, "X", "Y", "Z", "W");
+        list1.moveToFinish(); // left = ["X", "Y", "Z", "W"], right = []
+        list1.retreat(); // left = ["X", "Y", "Z"], right = ["W"]
+        list1.retreat(); // left = ["X", "Y"], right = ["Z", "W"]
+        List<String> list2 = this.createFromArgsRef(2, "X", "Y", "Z", "W");
+        assertEquals(list2, list1);
+    }
+
+    // Calling retreat when left is empty should violate precondition
+    @Test(expected = AssertionError.class)
+    public final void testRetreatOnEmptyLeftThrowsException() {
+        List<String> list1 = this.createFromArgsTest(0, "A", "B", "C");
+        // Since left is empty, calling retreat should fail.
+        list1.retreat();
+    }
+
+    // Alternate operations: alternating advance and retreat repeatedly
+    @Test
+    public final void testRetreatAlternateOperations() {
+        List<String> list1 = this.createFromArgsTest(2, "a", "b", "c", "d", "e",
+                "f");
+        // Initial state: left = ["a", "b"], right = ["c", "d", "e", "f"]
+        list1.retreat(); // left = ["a"], right = ["b", "c", "d", "e", "f"]
+        list1.advance(); // left = ["a", "b"], right = ["c", "d", "e", "f"]
+        list1.retreat(); // left = ["a"], right = ["b", "c", "d", "e", "f"]
+        list1.advance(); // left = ["a", "b"], right = ["c", "d", "e", "f"]
+        list1.retreat(); // left = ["a"], right = ["b", "c", "d", "e", "f"]
+        List<String> list2 = this.createFromArgsRef(1, "a", "b", "c", "d", "e",
+                "f");
+        assertEquals(list2, list1);
+    }
+
 }
