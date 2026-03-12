@@ -177,6 +177,7 @@ public class List3<T> extends ListSecondary<T> {
     private void createNewRep() {
 
         this.createNewRep();
+        //note
 
     }
 
