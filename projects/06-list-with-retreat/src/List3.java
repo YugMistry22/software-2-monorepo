@@ -240,7 +240,6 @@ public class List3<T> extends ListSecondary<T> {
         Node node = new Node();
         node.data = x;
 
-
         assert this.conventionHolds();
     }
 
