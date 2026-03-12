@@ -191,7 +191,7 @@ public class List3<T> extends ListSecondary<T> {
      */
     public List3() {
 
-        // TODO - fill in body
+        this.createNewRep();
 
         assert this.conventionHolds();
     }
@@ -258,8 +258,9 @@ public class List3<T> extends ListSecondary<T> {
     @Override
     public final void advance() {
         assert this.rightLength() > 0 : "Violation of: this.right /= <>";
-
-        // TODO - fill in body
+        this.lastLeft = this.lastLeft.next;
+        this.leftLength++;
+        this.rightLength--;
 
         assert this.conventionHolds();
     }
