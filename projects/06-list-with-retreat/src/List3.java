@@ -231,7 +231,9 @@ public class List3<T> extends ListSecondary<T> {
     public final void addRightFront(T x) {
         assert x != null : "Violation of: x is not null";
 
-        // TODO - fill in body
+        Node node = new Node();
+        node.data = x;
+
 
         assert this.conventionHolds();
     }
