@@ -109,6 +109,9 @@ public class Program2 extends ProgramSecondary {
         // TODO - fill in body
         // Make sure to use Statement1 from the library
         // Use Map1L for the context if you want the asserts below to match
+        this.name = "Unnamed";
+        this.body = new Statement1();
+        this.context = new Map1L<>();
 
     }
 
@@ -170,6 +173,7 @@ public class Program2 extends ProgramSecondary {
                 + "Violation of: n is a valid IDENTIFIER";
 
         // TODO - fill in body
+        this.name = n;
 
     }
 
@@ -179,7 +183,7 @@ public class Program2 extends ProgramSecondary {
         // TODO - fill in body
 
         // Fix this line to return the result.
-        return null;
+        return this.name;
     }
 
     @Override
@@ -188,7 +192,7 @@ public class Program2 extends ProgramSecondary {
         // TODO - fill in body
 
         // Fix this line to return the result.
-        return null;
+        return this.context.newInstance();
     }
 
     @Override
@@ -204,6 +208,10 @@ public class Program2 extends ProgramSecondary {
                 + " are all BLOCK statements";
 
         // TODO - fill in body
+        Map<String, Statement> instance = this.context.newInstance();
+        instance.transferFrom(this.context);
+        this.context.transferFrom(c);
+        c.transferFrom(instance);
 
     }
 
@@ -213,7 +221,7 @@ public class Program2 extends ProgramSecondary {
         // TODO - fill in body
 
         // Fix this line to return the result.
-        return null;
+        return this.body.newInstance();
     }
 
     @Override
@@ -223,6 +231,10 @@ public class Program2 extends ProgramSecondary {
         assert b.kind() == Kind.BLOCK : "Violation of: b is a BLOCK statement";
 
         // TODO - fill in body
+        Statment instance = this.body.newInstance();
+        instance.transferFrom(this.body);
+        this.body.transferFrom(b);
+        b.transferFrom(instance);
 
     }
 

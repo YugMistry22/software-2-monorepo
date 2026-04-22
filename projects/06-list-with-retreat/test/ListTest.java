@@ -7,7 +7,7 @@ import components.list.List;
 /**
  * JUnit test fixture for {@code List<String>}'s constructor and kernel methods.
  *
- * @author Put your name here
+ * @author Yug Mistry& Aarush Kurupati
  *
  */
 public abstract class ListTest {
@@ -752,8 +752,6 @@ public abstract class ListTest {
         list1.addRightFront("red");
         assertEquals(list2, list1);
     }
-
-    // TODO - add test cases for retreat
 
     // Retreat with single element in left when right contains multiple elements
     @Test
