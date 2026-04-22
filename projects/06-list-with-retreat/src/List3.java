@@ -240,13 +240,6 @@ public class List3<T> extends ListSecondary<T> {
         Node node = new Node();
         node.data = x;
 
-        Node firstRight = this.lastLeft.next;
-        node.next = firstRight;
-        node.previous = this.lastLeft;
-        this.lastLeft.next = node;
-        firstRight.previous = node;
-        this.rightLength++;
-
         assert this.conventionHolds();
     }
 
@@ -254,17 +247,11 @@ public class List3<T> extends ListSecondary<T> {
     public final T removeRightFront() {
         assert this.rightLength() > 0 : "Violation of: this.right /= <>";
 
-        Node remove = this.lastLeft.next;
-        T result = remove.data;
-        Node after = remove.next;
-
-        this.lastLeft.next = after;
-        after.previous = this.lastLeft;
-        this.rightLength--;
+        // TODO - fill in body
 
         assert this.conventionHolds();
         // Fix this line to return the result after checking the convention.
-        return result;
+        return null;
     }
 
     @Override
