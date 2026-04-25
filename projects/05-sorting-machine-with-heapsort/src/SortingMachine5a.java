@@ -182,19 +182,22 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
          */
 
         int leftChild = 2 * top + 1;
-        int rightChild = 2 * top + 2;
-        if (leftChild <= last) {
-            int smaller = leftChild;
-            if (rightChild <= last
-                    && order.compare(array[rightChild], array[leftChild]) < 0) {
-                smaller = rightChild;
-            }
-            if (order.compare(array[top], array[smaller]) > 0) {
-                exchangeEntries(array, top, smaller);
-            }
-        }
-        // *** you must use the recursive algorithm discussed in class ***
 
+        if (leftChild > last) {
+            return;
+        }
+
+        int right = 2 * top + 2;
+        int smallest = leftChild;
+        if (right <= last
+                && order.compare(array[right], array[leftChild]) < 0) {
+            smallest = right;
+        }
+
+        if (order.compare(array[top], array[smallest]) > 0) {
+            exchangeEntries(array, top, smallest);
+            siftDown(array, smallest, last, order);
+        }
     }
 
     /**
@@ -241,7 +244,7 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
             int child = top * 2 + 1;
             heapify(array, child + 1, order);
             if (child < array.length - 1) {
-                heapify(array, child + 1, order);
+                heapify(array, child, order);
             }
             siftDown(array, top, array.length - 1, order);
             // *** you must use the recursive algorithm discussed in class ***
@@ -412,7 +415,6 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
 
         this.machineOrder = order;
         this.insertionMode = true;
-        this.machineOrder = order;
         this.entries = new Queue1L<T>();
         this.heapSize = 0;
     }
