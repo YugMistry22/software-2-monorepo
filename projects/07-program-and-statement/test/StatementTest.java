@@ -453,4 +453,75 @@ public abstract class StatementTest {
 
     // TODO - provide additional test cases to thoroughly test StatementKernel
 
+    @Test
+    public final void testLengthOfBlockEmpty() {
+        Statement sTest = this.constructorTest();
+        Statement sRef = this.constructorRef();
+
+        assertEquals(0, sTest.lengthOfBlock());
+        assertEquals(sRef, sTest);
+    }
+
+    @Test
+    public final void testAddToBlockBack() {
+        Statement sTest = this.createFromFileTest(FILE_NAME_1);
+        Statement sRef = this.createFromFileRef(FILE_NAME_1);
+
+        int lenT = sTest.lengthOfBlock();
+        int lenR = sRef.lengthOfBlock();
+
+        Statement movedTest = sTest.removeFromBlock(0);
+        Statement movedRef = sRef.removeFromBlock(0);
+        Statement empty = sRef.newInstance();
+
+        sTest.addToBlock(lenT - 1, movedTest);
+        sRef.addToBlock(lenR - 1, movedRef);
+
+        assertEquals(empty, movedTest);
+        assertEquals(sRef, sTest);
+    }
+
+    @Test
+    public final void testAssembleDisassembleIfRoundTrip() {
+        Statement block = this.constructorTest();
+        Statement nested = this.constructorTest();
+        Condition c = Condition.NEXT_IS_EMPTY;
+
+        Statement s = this.constructorTest().newInstance();
+        s.assembleIf(c, nested);
+
+        Statement out = s.newInstance();
+        Condition cOut = s.disassembleIf(out);
+
+        assertEquals(c, cOut);
+        assertEquals(this.constructorRef(), s);
+        assertEquals(this.constructorRef(), nested);
+        assertEquals(this.constructorRef(), out);
+    }
+
+    @Test
+    public final void testDisassembleIfElse_Basic() {
+
+        Statement thenB = this.constructorTest();
+        Statement elseB = this.constructorTest();
+
+        Condition cond = Condition.NEXT_IS_EMPTY;
+        Statement s = this.constructorTest().newInstance();
+        s.assembleIfElse(cond, thenB, elseB);
+
+        Statement outThen = this.constructorTest();
+        Statement outElse = this.constructorTest();
+
+        Condition got = s.disassembleIfElse(outThen, outElse);
+
+        Statement emptyRef = this.constructorRef();
+
+        assertEquals(cond, got);
+        assertEquals(emptyRef, s);
+        assertEquals(emptyRef, outThen);
+        assertEquals(emptyRef, outElse);
+        assertEquals(emptyRef, thenB);
+        assertEquals(emptyRef, elseB);
+    }
+
 }
