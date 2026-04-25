@@ -60,7 +60,7 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
         assert i >= 0 : "Violation of: i >= 0";
 
         this.createNewRep();
-        if (i != 0) {
+        if (i > 0) {
             this.rep = Integer.toString(i);
         }
 
