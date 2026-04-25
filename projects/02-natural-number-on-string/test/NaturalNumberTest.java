@@ -102,8 +102,6 @@ public abstract class NaturalNumberTest {
      */
     protected abstract NaturalNumber constructorRef(NaturalNumber n);
 
-    // TODO - add test cases for four constructors, multiplyBy10, divideBy10, isZero
-
     /**
     *
     */
@@ -114,20 +112,13 @@ public abstract class NaturalNumberTest {
         assertEquals(ref, test);
     }
 
-    /**
-    *
-    */
     @Test
     public void testIntConstructor() {
-        final int testIntNumber = 5;
-        NaturalNumber test = this.constructorTest(testIntNumber);
-        NaturalNumber ref = this.constructorRef(testIntNumber);
+        NaturalNumber test = this.constructorTest(5);
+        NaturalNumber ref = this.constructorRef(5);
         assertEquals(ref, test);
     }
 
-    /**
-    *
-    */
     @Test
     public void testStringConstructor() {
         NaturalNumber test = this.constructorTest("123");
@@ -135,104 +126,80 @@ public abstract class NaturalNumberTest {
         assertEquals(ref, test);
     }
 
-    /**
-    *
-    */
     @Test
     public void testNaturalNumberConstructor() {
-        final int testIntNumber = 42;
-        NaturalNumber ref = this.constructorRef(testIntNumber);
+        NaturalNumber ref = this.constructorRef(42);
         NaturalNumber test = this.constructorTest(ref);
         assertEquals(ref, test);
     }
 
-    /**
-    *
-    */
     @Test
     public void testMultiplyBy10() {
-        final NaturalNumber testNaturalNumber = this.constructorRef(3);
+        NaturalNumber testNaturalNumber = this.constructorRef(3);
         NaturalNumber test = this.constructorTest(testNaturalNumber);
-        NaturalNumber ref = this.constructorRef(testNaturalNumber);
+        NaturalNumber ref = this.constructorRef(34);
 
-        final int testIntNumber = 4;
-        test.multiplyBy10(testIntNumber);
-        ref.multiplyBy10(testIntNumber);
+        test.multiplyBy10(4);
+
         assertEquals(ref, test);
     }
 
-    /**
-    *
-    */
     @Test
     public void testMultiplyBy10WithZero() {
         NaturalNumber test = this.constructorTest();
-        NaturalNumber ref = this.constructorRef();
+        NaturalNumber ref = this.constructorRef(0);
+
         test.multiplyBy10(0);
-        ref.multiplyBy10(0);
+
         assertEquals(ref, test);
     }
 
-    /**
-    *
-    */
     @Test
     public void testMultiplyBy10WithCarry() {
-        final String testStringNumber = "57";
-        NaturalNumber test = this.constructorTest(testStringNumber);
-        NaturalNumber ref = this.constructorRef(testStringNumber);
+        NaturalNumber test = this.constructorTest("57");
+        NaturalNumber ref = this.constructorRef("579");
 
-        final int testIntNumber = 9;
+        test.multiplyBy10(9);
 
-        test.multiplyBy10(testIntNumber);
-        ref.multiplyBy10(testIntNumber);
         assertEquals(ref, test);
     }
 
-    /**
-    *
-    */
     @Test
     public void testDivideBy10() {
-        final String testStringNumber = "123";
-        NaturalNumber test = this.constructorTest(testStringNumber);
-        NaturalNumber ref = this.constructorRef(testStringNumber);
+        NaturalNumber test = this.constructorTest("123");
+        NaturalNumber ref = this.constructorRef("12");
+
         int testRemainder = test.divideBy10();
-        int refRemainder = ref.divideBy10();
+        int refRemainder = 3;
+
         assertEquals(ref, test);
         assertEquals(refRemainder, testRemainder);
     }
 
-    /**
-    *
-    */
     @Test
     public void testDivideBy10ToZero() {
-        final int testIntNumber = 5;
-        NaturalNumber test = this.constructorTest(testIntNumber);
-        NaturalNumber ref = this.constructorRef(testIntNumber);
+        NaturalNumber test = this.constructorTest(5);
+        NaturalNumber ref = this.constructorRef(0);
+
         int testRemainder = test.divideBy10();
-        int refRemainder = ref.divideBy10();
+        int refRemainder = 5;
+
         assertEquals(ref, test);
         assertEquals(refRemainder, testRemainder);
     }
 
-    /**
-    *
-    */
     @Test
     public void testDivideBy10WhenZero() {
         NaturalNumber test = this.constructorTest();
         NaturalNumber ref = this.constructorRef();
+
         int testRemainder = test.divideBy10();
-        int refRemainder = ref.divideBy10();
+        int refRemainder = 0;
+
         assertEquals(ref, test);
         assertEquals(refRemainder, testRemainder);
     }
 
-    /**
-    *
-    */
     @Test
     public void testIsZeroTrue() {
         NaturalNumber test = this.constructorTest();
@@ -241,27 +208,21 @@ public abstract class NaturalNumberTest {
         assertTrue(ref.isZero());
     }
 
-    /**
-    *
-    */
     @Test
     public void testIsZeroFalse() {
-        final int testIntNumber = 15;
-        NaturalNumber test = this.constructorTest(testIntNumber);
-        NaturalNumber ref = this.constructorRef(testIntNumber);
+        NaturalNumber test = this.constructorTest(15);
+        NaturalNumber ref = this.constructorRef(15);
+
         assertEquals(ref.isZero(), test.isZero());
     }
 
-    /**
-     *
-     */
     @Test
     public void testIsZeroAfterDivideBy10() {
         NaturalNumber test = this.constructorTest(1);
-        NaturalNumber ref = this.constructorRef(1);
+        NaturalNumber ref = this.constructorRef(0);
+
         test.divideBy10();
-        ref.divideBy10();
+
         assertEquals(ref.isZero(), test.isZero());
     }
-
 }
