@@ -2,6 +2,7 @@ import components.sequence.Sequence;
 import components.statement.Statement;
 import components.statement.StatementSecondary;
 import components.tree.Tree;
+import components.tree.Tree1;
 import components.utilities.Tokenizer;
 
 /**
@@ -11,7 +12,7 @@ import components.utilities.Tokenizer;
  * @convention [$this.rep is a valid representation of a Statement]
  * @correspondence this = $this.rep
  *
- * @author Put your name here
+ * @author Aarush, Yug
  *
  */
 public class Statement2 extends StatementSecondary {
@@ -116,9 +117,9 @@ public class Statement2 extends StatementSecondary {
      */
     private void createNewRep() {
 
-        this.rep = new Tree1L<>();
-        StatementLabel theBlock = new StatementLabel(Kind.BLOCK);
-        this.rep.assemble(theBlock, this.rep.newSequenceOfTree())
+        StatementLabel label = new StatementLabel(Kind.BLOCK);
+        this.rep = new Tree1<>();
+        this.rep.assemble(label, this.rep.newSequenceOfTree());
     }
 
     /*
@@ -188,7 +189,6 @@ public class Statement2 extends StatementSecondary {
                 + "Violation of: pos <= [length of this BLOCK]";
         assert s.kind() != Kind.BLOCK : "Violation of: [s is not a BLOCK statement]";
 
-        // TODO - fill in body
         Statement2 localS = (Statement2) s;
 
         Sequence<Tree<StatementLabel>> children = this.rep.newSequenceOfTree();
@@ -216,18 +216,15 @@ public class Statement2 extends StatementSecondary {
          * code.
          */
 
-        // TODO - fill in body
         Statement2 s = (Statement2) this.newInstance();
 
         Sequence<Tree<StatementLabel>> children = this.rep.newSequenceOfTree();
         StatementLabel label = this.rep.disassemble(children);
 
-        s.rep = children.remove(pos);
-
+        Tree<StatementLabel> t = children.remove(pos);
         this.rep.assemble(label, children);
 
-        return s;
-
+        s.rep = t;
         return s;
     }
 
@@ -236,11 +233,10 @@ public class Statement2 extends StatementSecondary {
         assert this.kind() == Kind.BLOCK : ""
                 + "Violation of: [this is a BLOCK statement]";
 
-        Sequence<Tree<StatementLabel>> theChildren = this.rep
-                .newSequenceOfTree();
-        StatementLabel label = this.rep.disassemble(theChildren);
+        Sequence<Tree<StatementLabel>> children = this.rep.newSequenceOfTree();
+        StatementLabel label = this.rep.disassemble(children);
         int length = children.length();
-        this.rep.assemble(label, theChildren);
+        this.rep.assemble(label, children);
         return length;
     }
 
@@ -292,7 +288,7 @@ public class Statement2 extends StatementSecondary {
 
         Statement2 sOne = (Statement2) s1;
         Statement2 sTwo = (Statement2) s2;
-        StatementLabel label = new StatementLabel(Kind.If_ELSE, c);
+        StatementLabel label = new StatementLabel(Kind.IF_ELSE, c);
         Sequence<Tree<StatementLabel>> theChildren = this.rep
                 .newSequenceOfTree();
         theChildren.add(0, sOne.rep);
@@ -366,8 +362,8 @@ public class Statement2 extends StatementSecondary {
                 + "Violation of: inst is a valid IDENTIFIER";
 
         StatementLabel theCall = new StatementLabel(Kind.CALL, inst);
-        this.rep.assemble(theCall,
-                this.rep.assemble(theCall, this.rep.newSequenceOfTree()));
+        Sequence<Tree<StatementLabel>> children = this.rep.newSequenceOfTree();
+        this.rep.assemble(theCall, children);
     }
 
     @Override

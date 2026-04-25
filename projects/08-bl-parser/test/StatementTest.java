@@ -11,7 +11,7 @@ import components.utilities.Tokenizer;
 /**
  * JUnit test fixture for {@code Statement}'s constructor and kernel methods.
  *
- * @author Put your name here
+ * @author Aarush, Yug
  *
  */
 public abstract class StatementTest {
@@ -20,7 +20,9 @@ public abstract class StatementTest {
      * The name of a file containing a sequence of BL statements.
      */
     private static final String FILE_NAME_1 = "projects/08-bl-parser/data/statement1.bl",
-            FILE_NAME_2 = "projects/08-bl-parser/data/statement2.bl";
+            FILE_NAME_2 = "projects/08-bl-parser/data/statement2.bl",
+            FILE_NAME_3 = "test/statement3.bl",
+            FILE_NAME_4 = "test/statement4.bl";
 
     /**
      * Invokes the {@code Statement} constructor for the implementation under
@@ -85,9 +87,6 @@ public abstract class StatementTest {
         sTest.parse(tokens);
     }
 
-    // TODO - add more test cases for valid inputs for both parse and parseBlock
-    // TODO - add more test cases for as many distinct syntax errors as possible
-    //        for both parse and parseBlock
     @Test
     public final void testParseValidExample3() {
         /*

@@ -11,7 +11,7 @@ import components.utilities.Tokenizer;
 /**
  * JUnit test fixture for {@code Program}'s constructor and kernel methods.
  *
- * @author Put your name here
+ * @author Aarush, Yug
  *
  */
 public abstract class ProgramTest {
@@ -20,7 +20,8 @@ public abstract class ProgramTest {
      * The names of a files containing a (possibly invalid) BL programs.
      */
     private static final String FILE_NAME_1 = "projects/08-bl-parser/data/program1.bl",
-            FILE_NAME_2 = "projects/08-bl-parser/data/program2.bl";
+            FILE_NAME_2 = "projects/08-bl-parser/data/program2.bl",
+            FILE_NAME_3 = "test/program3.bl", FILE_NAME_4 = "test/program4.bl";
 
     /**
      * Invokes the {@code Program} constructor for the implementation under test
@@ -41,7 +42,7 @@ public abstract class ProgramTest {
     protected abstract Program constructorRef();
 
     /**
-     * Test of parse on syntactically valid input.
+     * Test of parse on valid input.
      */
     @Test
     public final void testParseValidExample() {
@@ -84,13 +85,11 @@ public abstract class ProgramTest {
         pTest.parse(tokens);
     }
 
-    // TODO - add more test cases for valid inputs
-    // TODO - add more test cases for as many distinct syntax errors as possible
+    /**
+     * Test of parse on valid input
+     */
     @Test(expected = RuntimeException.class)
     public final void testParseValidExampleProgram3() {
-        /*
-         * Setup
-         */
         Program pRef = this.constructorRef();
         SimpleReader file = new SimpleReader1L(FILE_NAME_3);
         pRef.parse(file);
