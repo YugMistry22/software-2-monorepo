@@ -175,25 +175,20 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
         assert isHeap(array, 2 * top + 2, last, order) : ""
                 + "Violation of: SUBTREE_IS_HEAP(array, 2 * top + 2, last,"
                 + " [relation computed by order.compare method])";
-        /*
-         * Impractical to check last requires clause; no need to check the other
-         * requires clause, because it must be true when using the array
-         * representation for a complete binary tree.
-         */
-
-        int leftChild = 2 * top + 1;
-
-        if (leftChild > last) {
+        // Get left nodes index
+        int left = 2 * top + 1;
+        // Judge whether there exists left node
+        if (left > last) {
             return;
         }
-
+        // Get right nodes index and set up smallest node index
         int right = 2 * top + 2;
-        int smallest = leftChild;
-        if (right <= last
-                && order.compare(array[right], array[leftChild]) < 0) {
+        int smallest = left;
+        if (right <= last && order.compare(array[right], array[left]) < 0) {
             smallest = right;
         }
-
+        // If root node larger than smallest one, then recursively call siftDown
+        // until root is the smallest one
         if (order.compare(array[top], array[smallest]) > 0) {
             exchangeEntries(array, top, smallest);
             siftDown(array, smallest, last, order);
@@ -242,9 +237,9 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
 
         if (array.length - 1 > top * 2) {
             int child = top * 2 + 1;
-            heapify(array, child + 1, order);
+            heapify(array, child, order);
             if (child < array.length - 1) {
-                heapify(array, child, order);
+                heapify(array, child + 1, order);
             }
             siftDown(array, top, array.length - 1, order);
             // *** you must use the recursive algorithm discussed in class ***
@@ -415,6 +410,7 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
 
         this.machineOrder = order;
         this.insertionMode = true;
+        this.machineOrder = order;
         this.entries = new Queue1L<T>();
         this.heapSize = 0;
     }

@@ -86,5 +86,46 @@ public abstract class ProgramTest {
 
     // TODO - add more test cases for valid inputs
     // TODO - add more test cases for as many distinct syntax errors as possible
+    @Test(expected = RuntimeException.class)
+    public final void testParseValidExampleProgram3() {
+        /*
+         * Setup
+         */
+        Program pRef = this.constructorRef();
+        SimpleReader file = new SimpleReader1L(FILE_NAME_3);
+        pRef.parse(file);
+        file.close();
+        Program pTest = this.constructorTest();
+        file = new SimpleReader1L(FILE_NAME_3);
+        Queue<String> tokens = Tokenizer.tokens(file);
+        file.close();
+        /*
+         * The call
+         */
+        pTest.parse(tokens);
+        /*
+         * Evaluation
+         */
+        assertEquals(pRef, pTest);
+    }
+
+    /**
+     * Test of parse on syntactically invalid input.
+     */
+    @Test(expected = RuntimeException.class)
+    public final void testParseErrorExampleProgram4() {
+        /*
+         * Setup
+         */
+        Program pTest = this.constructorTest();
+        SimpleReader file = new SimpleReader1L(FILE_NAME_4);
+        Queue<String> tokens = Tokenizer.tokens(file);
+        file.close();
+        /*
+         * The call--should result in a syntax error being found invalid
+         * condition
+         */
+        pTest.parse(tokens);
+    }
 
 }
