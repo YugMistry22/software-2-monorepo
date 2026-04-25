@@ -21,8 +21,8 @@ public abstract class StatementTest {
      */
     private static final String FILE_NAME_1 = "projects/08-bl-parser/data/statement1.bl",
             FILE_NAME_2 = "projects/08-bl-parser/data/statement2.bl",
-            FILE_NAME_3 = "test/statement3.bl",
-            FILE_NAME_4 = "test/statement4.bl";
+            FILE_NAME_3 = "projects/08-bl-parser/data/statement3.bl",
+            FILE_NAME_4 = "projects/08-bl-parser/data/statement4.bl";
 
     /**
      * Invokes the {@code Statement} constructor for the implementation under
