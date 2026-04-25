@@ -289,54 +289,14 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
     public final T removeAny() {
         assert this.size() > 0 : "Violation of: this /= empty_set";
 
-        BinaryTree<T> left = this.tree.newInstance();
-        BinaryTree<T> right = this.tree.newInstance();
-        T root = this.tree.disassemble(left, right);
-
-        T result = root;
-
-        if (left.size() == 0) {
-            this.tree.transferFrom(right);
-        } else if (right.size() == 0) {
-            this.tree.transferFrom(left);
-        } else {
-            T smallest = removeSmallest(right);
-            this.tree.assemble(smallest, left, right);
-        }
-
-        return result;
+        return removeSmallest(this.tree);
     }
 
     @Override
     public final boolean contains(T x) {
         assert x != null : "Violation of: x is not null";
 
-        if (this.tree.size() == 0) {
-            return false;
-        }
-
-        BinaryTree<T> left = this.tree.newInstance();
-        BinaryTree<T> right = this.tree.newInstance();
-        T root = this.tree.disassemble(left, right);
-
-        boolean found;
-        int cmp = x.compareTo(root);
-
-        if (cmp == 0) {
-            found = true;
-        } else if (cmp < 0) {
-            this.tree.transferFrom(left);
-            found = this.contains(x);
-            left.transferFrom(this.tree);
-        } else {
-            this.tree.transferFrom(right);
-            found = this.contains(x);
-            right.transferFrom(this.tree);
-        }
-
-        this.tree.assemble(root, left, right);
-
-        return found;
+        return isInTree(this.tree, x);
     }
 
     @Override
