@@ -15,7 +15,7 @@ import components.utilities.Tokenizer;
  *             and [$this.body is a BLOCK statement]
  * @correspondence this = ($this.name, $this.context, $this.body)
  *
- * @author Put your name here
+ * @author Aarush, Yug
  *
  */
 public class Program2 extends ProgramSecondary {
@@ -105,8 +105,6 @@ public class Program2 extends ProgramSecondary {
      * Creator of initial representation.
      */
     private void createNewRep() {
-
-        // TODO - fill in body
         // Make sure to use Statement1 from the library
         // Use Map1L for the context if you want the asserts below to match
         this.name = "Unnamed";
@@ -172,7 +170,6 @@ public class Program2 extends ProgramSecondary {
         assert Tokenizer.isIdentifier(n) : ""
                 + "Violation of: n is a valid IDENTIFIER";
 
-        // TODO - fill in body
         this.name = n;
 
     }
@@ -180,16 +177,12 @@ public class Program2 extends ProgramSecondary {
     @Override
     public final String name() {
 
-        // TODO - fill in body
-
         // Fix this line to return the result.
         return this.name;
     }
 
     @Override
     public final Map<String, Statement> newContext() {
-
-        // TODO - fill in body
 
         // Fix this line to return the result.
         return this.context.newInstance();
@@ -207,7 +200,6 @@ public class Program2 extends ProgramSecondary {
         assert allBlocks(c) : "Violation of: bodies in c"
                 + " are all BLOCK statements";
 
-        // TODO - fill in body
         Map<String, Statement> instance = this.context.newInstance();
         instance.transferFrom(this.context);
         this.context.transferFrom(c);
@@ -217,8 +209,6 @@ public class Program2 extends ProgramSecondary {
 
     @Override
     public final Statement newBody() {
-
-        // TODO - fill in body
 
         // Fix this line to return the result.
         return this.body.newInstance();
@@ -230,8 +220,7 @@ public class Program2 extends ProgramSecondary {
         assert b instanceof Statement1 : "Violation of: b is a Statement1";
         assert b.kind() == Kind.BLOCK : "Violation of: b is a BLOCK statement";
 
-        // TODO - fill in body
-        Statment instance = this.body.newInstance();
+        Statement instance = this.body.newInstance();
         instance.transferFrom(this.body);
         this.body.transferFrom(b);
         b.transferFrom(instance);
